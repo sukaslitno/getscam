@@ -167,17 +167,11 @@ export default function Home() {
       <main className="flex-1 px-4 pt-4 pb-6 max-w-[600px] mx-auto w-full lg:max-w-[800px] xl:max-w-[960px]">
         {/* Header */}
         <header className="flex items-center justify-between h-[40px] mb-6">
-          <div className="flex gap-[4px] items-center">
-            <div className="w-[40px] h-[40px] shrink-0">
-              <Image src="/assets/Logo.svg" alt="Getscam" width={40} height={40} />
-            </div>
-            <div className="flex flex-col items-center justify-center pb-[2px]">
-              <span className="font-extrabold text-[16px] text-black whitespace-nowrap leading-none">Getscam</span>
-              <span className="font-semibold text-[10px] text-black/50 leading-none">c 2013 года</span>
-            </div>
-          </div>
-          <button className="w-[40px] h-[40px] bg-[#f2f2f2] rounded-[10px] flex items-center justify-center shrink-0">
-            <Image src="/assets/Frame.svg" alt="Menu" width={24} height={24} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/assets/Logo.svg" alt="Getscam" width={115} height={40} className="h-[40px] w-[115px]" />
+          <button className="size-[40px] bg-[#f2f2f2] rounded-[10px] flex items-center justify-center shrink-0">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/assets/Frame.svg" alt="Menu" width={24} height={24} className="size-[24px]" />
           </button>
         </header>
 
