@@ -110,7 +110,10 @@ export default function Home() {
   const touchStartX = useRef(0);
   const autoplayRef = useRef<ReturnType<typeof setInterval>>(undefined);
 
-  const hasError = touched && phone.length > 3 && !isValidPhone(phone);
+  const isEmpty = touched && (!phone || phone.trim() === "+7" || phone.trim() === "+7 ");
+  const hasError = touched && !isEmpty && phone.length > 3 && !isValidPhone(phone);
+  const showError = isEmpty || hasError;
+  const errorMessage = isEmpty ? "Введите номер телефона" : "Введите корректный номер телефона";
 
   /* Slider autoplay */
   const resetAutoplay = useCallback(() => {
@@ -139,6 +142,7 @@ export default function Home() {
   };
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTouched(false);
     const raw = e.target.value;
     if (raw.length < 3) {
       setPhone("+7 ");
@@ -196,7 +200,7 @@ export default function Home() {
             <div
               className={`
                 flex items-center gap-2 h-[44px] rounded-[16px] px-4 transition-all duration-200
-                ${hasError
+                ${showError
                   ? "bg-red-50 ring-2 ring-red-400"
                   : focused
                     ? "bg-white ring-2 ring-black/20"
@@ -216,9 +220,9 @@ export default function Home() {
               <Image src="/assets/Flag.svg" alt="RU" width={16} height={16} className="shrink-0" />
             </div>
 
-            {hasError && (
+            {showError && (
               <p className="text-red-500 text-[12px] font-medium mt-1 px-2">
-                Введите корректный номер телефона
+                {errorMessage}
               </p>
             )}
 
